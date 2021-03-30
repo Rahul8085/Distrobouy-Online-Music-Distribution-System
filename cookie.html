@@ -1,0 +1,153 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+</head>
+<body>
+
+<h2>Tabs</h2>
+<p>Click on the buttons inside the tabbed menu:</p>
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Upload Music</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">All songs</button>
+</div>
+
+<div id="London" class="tabcontent">
+<div>
+								<input 	type="file"  
+										id="customFile" 
+										name="uploadingFiles" 
+										onchange="AlertFilesize();" 
+										accept="audio/*" multiple required>
+								<p id="fileSize"></p>
+                                <div id="fileNames"></div>
+					        </div>
+						<input type="submit" value="Upload" id="UploadSongs">
+						<progress id="FileUploadProgress" value="0" max="100">0%</progress>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+function getFilePath(){
+     $('input[type=file]').change(function () {
+         var filePath=$('#fileUpload').val(); 
+     });
+}
+$(document).ready(function(){
+$("#UploadAcknoledegement").hide();
+$("#UploadSongs").click(function(){
+$("#UploadAcknoledegement").show();
+});
+});
+ function AlertFilesize()
+            {
+                if(window.ActiveXObject){
+                    var fso = new ActiveXObject("Scripting.FileSystemObject");
+                    var filepath = document.getElementById('fileInput').value;
+					console.log("Hello "+filepath);
+                    var thefile = fso.getFile(filepath);
+                    var sizeinbytes = thefile.size;
+                    var filename=thefile.name;
+                }
+                else
+                {
+				
+                var fil = document.getElementById('customFile');
+                var filename,allname="";
+                if(fil.files.length>7){
+				alert("You have uploaded more number of files");
+				document.getElementById("customFile").value="";
+				}else{
+				console.log(fil.files.length);
+				var mainText="<table id=\"AudioData\">";
+                	for (var i = 0; i <= fil.files.length - 1; i++)
+                	{
+					var objectURL=URL.createObjectURL(fil.files[i]);
+						filename=fil.files[i].name;
+						mainText+="<tr>";
+						mainText+="<td>";
+						mainText+=filename;
+						mainText+="</td>";
+						mainText+="<td>";
+						mainText+="<audio controls >";
+						mainText+="		<source src=\""+objectURL+"\" type=\"" +fil.files[i].type+"\">";
+						mainText+="</audio>";
+						mainText+="</td>";
+			mainText+="</tr>";
+					}
+					mainText+="</table>";
+					console.log(mainText);
+                }
+                
+                document.getElementById('fileNames').innerHTML=mainText;
+				document.cookie="audioFiles="+mainText+";";
+				console.log("Cookies: "+document.cookie);
+				document.getElementById('AlbumUploads').innerHTML=mainText;
+				}
+            }
+</script>
+</div>
+
+<div id="Paris" class="tabcontent">
+<div id="AlbumUploads">
+
+</div>
+</div>
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+   
+</body>
+</html> 

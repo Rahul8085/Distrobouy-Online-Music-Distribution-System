@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>user Details</title>
+</head>
+<div id="HereAreAudios">
+</div>
+<body>
+
+	<button onclick="userDetails()">Retrive Details</button>
+
+		
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+	<script src="app.js"></script>
+	<script src="userDetails.js"></script>
+
+    <input type="file" class="js-fileElem" multiple accept="audio/*" style="display:none">
+    <a href="#" class="js-fileSelect">Select some files</a>
+    
+    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+    <script>
+      (() => { // protect the lemmings!
+        // Initialize Firebase
+        const firebaseConfig = {
+  apiKey: "AIzaSyDX9uhnCGW7zHHSoBOIaD9AD0Pf4cEi4II",
+  authDomain: "distrobouy-60295.firebaseapp.com",
+  databaseURL: "https://distrobouy-60295.firebaseio.com",
+  projectId: "distrobouy-60295",
+  storageBucket: "distrobouy-60295.appspot.com",
+  messagingSenderId: "836678240996",
+  appId: "1:836678240996:web:81e04d22af9043f8fb7af1",
+  measurementId: "G-CRLLXF7VK8"
+};
+	        firebase.initializeApp(firebaseConfig);
+        
+        // Get a reference to the storage service, which is used to create references in your storage bucket
+        const storage = firebase.storage();
+
+        // Create a storage reference from our storage service
+        const storageRef = storage.ref();
+        
+        // Create a child reference
+        const imagesRef = storageRef.child('Music12345/');
+        // imagesRef now points to 'images'
+
+        // Create a ref to a file - space.jpg
+        const spaceRef = imagesRef.child('rp.mp3');
+        // ^^^ now you should have a "path" in your firebase storage that looks like: 'images/space.jpg'
+
+        // select anchor tag and file input
+        const fileSelect = document.querySelector('.js-fileSelect');
+        const fileElem = document.querySelector('.js-fileElem');
+
+        // click handler for fileElem
+        fileSelect.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // trigger click on input type="file"
+            // this will call the change event defined below
+            if (fileElem) {
+                fileElem.click();
+            }
+        });
+
+        // change handler for fileSelect
+        fileElem.addEventListener('change', (e) => {
+            // e.target.files contains File object references
+            // to all chosen items by user
+            console.log(e.target.files);
+
+            /* ADDED THESE LINES */
+            // since e.target.files is "array-like", we turn it into an array
+            // then map it to the .put() method from Firebase, which returns promises...
+            const fileUploads = Array.from(e.target.files).map((currFile) => {
+                // we store the name of the file as a storage ref
+                const fileRef = imagesRef.child(currFile.name);
+                // we return a promise where we first "put" or upload the file
+                // and then once the upload is complete, we return promise with
+                // download URL string of the file we uploaded
+                return fileRef.put(currFile).then((snapshot) => snapshot.downloadURL);
+            });
+
+            // once ALL the promises have been resolved
+            // we console.log the urls...but we can do whatever we need to with this data 
+            // from here
+            Promise.all(fileUploads).then((items) => {
+			var mainText="";
+			mainText+="<audio controls >";
+			mainText+="		<source src=\""+items+"\" type=\"audio/mp3\">";
+			mainText+="</audio>";
+			console.log(mainText);
+			document.getElementById("HereAreAudios").innerHTML=mainText;
+            });
+            /* END ADDED THESE LINES */
+        });
+      })();
+      
+    </script>
+</body>
+</html>

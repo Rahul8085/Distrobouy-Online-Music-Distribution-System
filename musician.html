@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<style> 
+    /*set border to the form*/ 
+      
+    form { 
+        border: 3px solid #f1f1f1; 
+    } 
+    /*assign full width inputs*/ 
+      
+    input[type=text], 
+    input[type=password] { 
+        width: 100%; 
+        padding: 12px 20px; 
+        margin: 8px 0; 
+        display: inline-block; 
+        border: 1px solid #ccc; 
+        box-sizing: border-box; 
+    } 
+    /*set a style for the buttons*/ 
+      
+    button { 
+        background-color: #4CAF50; 
+        color: white; 
+        padding: 14px 20px; 
+        margin: 8px 0; 
+        border: none; 
+        cursor: pointer; 
+        width: 100%; 
+    } 
+    /* set a hover effect for the button*/ 
+      
+    button:hover { 
+        opacity: 0.8; 
+    } 
+    /*set extra style for the cancel button*/ 
+      
+    .cancelbtn { 
+        width: auto; 
+        padding: 10px 18px; 
+        background-color: #f44336; 
+    } 
+    /*centre the display image inside the container*/ 
+      
+    .imgcontainer { 
+        text-align: center; 
+        margin: 24px 0 12px 0; 
+    } 
+    /*set image properties*/ 
+      
+    img.avatar { 
+        width: 40%; 
+        border-radius: 50%; 
+    } 
+    /*set padding to the container*/ 
+      
+    .container { 
+        padding: 10px; 
+    } 
+    /*set the forgot password text*/ 
+      
+    span.psw { 
+        float: right; 
+        padding-top: 16px; 
+    } 
+    /*set styles for span and cancel button on small screens*/ 
+      
+    @media screen and (max-width: 300px) { 
+        span.psw { 
+            display: block; 
+            float: none; 
+        } 
+        .cancelbtn { 
+            width: 100%; 
+        } 
+    } 
+	@import "compass/css3";
+
+$body-bg: #c1bdba;
+$form-bg: #13232f;
+$white: #ffffff;
+
+$main: #1ab188;
+$main-light: lighten($main,5%);
+$main-dark: darken($main,5%);
+
+$gray-light: #a0b3b0;
+$gray: #ddd;
+
+$thin: 300;
+$normal: 400;
+$bold: 600;
+$br: 4px;
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+	overflow-y: scroll; 
+}
+
+body {
+  background:$body-bg;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+a {
+  text-decoration:none;
+  color:$main;
+  transition:.5s ease;
+  &:hover {
+    color:$main-dark;
+  }
+}
+
+.form {
+  background:rgba($form-bg,.9);
+  padding: 40px;
+  max-width:500px;
+  margin:40px auto;
+  border-radius:$br;
+  box-shadow:0 4px 10px 4px rgba($form-bg,.3);
+}
+
+.tab-group {
+  list-style:none;
+  padding:0;
+  margin:0 0 40px 0;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  li a {
+    display:block;
+    text-decoration:none;
+    padding:15px;
+    background:rgba($gray-light,.25);
+    color:$gray-light;
+    font-size:20px;
+    float:left;
+    width:50%;
+    text-align:center;
+    cursor:pointer;
+    transition:.5s ease;
+    &:hover {
+      background:$main-dark;
+      color:$white;
+    }
+  }
+  .active a {
+    background:$main;
+    color:$white;
+  }
+}
+
+
+
+
+h1 {
+  text-align:center;
+  color:$white;
+  font-weight:$thin;
+  margin:0 0 40px;
+}
+
+html { height: 100% }
+::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
+::selection { background: #fe57a1; color: #fff; text-shadow: none; }
+body { background-image: radial-gradient( cover, rgba(92,100,111,1) 0%,rgba(31,35,40,1) 100%), url('http://i.minus.com/io97fW9I0NqJq.png') }
+.login {
+  background: #eceeee;
+  border: 1px solid #42464b;
+  border-radius: 6px;
+  height: 257px;
+  margin: 20px auto 0;
+  width: 298px;
+}
+.login h1 {
+  background-image: linear-gradient(top, #f1f3f3, #d4dae0);
+  border-bottom: 1px solid #a6abaf;
+  border-radius: 6px 6px 0 0;
+  box-sizing: border-box;
+  color: #727678;
+  display: block;
+  height: 43px;
+  font: 600 14px/1 'Open Sans', sans-serif;
+  padding-top: 14px;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2), 0 1px 0 #fff;
+}
+      body {
+        background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .main {
+        background-color: #FFFFFF;
+        width: 400px;
+        height: 400px;
+        margin: 7em auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    
+    .sign {
+        padding-top: 40px;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 23px;
+    }
+    
+    .un {
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+    }
+    
+    form.form1 {
+        padding-top: 40px;
+    }
+    
+    .pass {
+            width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+    }
+    
+   
+    .un:focus, .pass:focus {
+        border: 2px solid rgba(0, 0, 0, 0.18) !important;
+        
+    }
+    
+    .submit {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: linear-gradient(to right, #9C27B0, #E040FB);
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        margin-left: 35%;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+    
+    .forgot {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #E1BEE7;
+        padding-top: 15px;
+    }
+    
+    a {
+        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+        color: #E1BEE7;
+        text-decoration: none
+    }
+    
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+
+</style> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="google-signin-client_id" content="836678240996-3sdl7pq1tee22la0pri5m2meudutpvtg.apps.googleusercontent.com">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Distrobouy</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- ##### Preloader ##### -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="circle-preloader">
+            <img src="img/core-img/compact-disc.png" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="musica-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container-fluid">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="musicaNav">
+
+                        <!-- Nav brand -->
+                     <!--   <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+&nbsp&nbsp&nbsp
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about-us.html">About us</a></li>
+                                   <!-- <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="about-us.html">About Us</a></li>
+                                            <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
+                                            <li><a href="blog.html">News</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="elements.html">Elements</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Mega Menu</a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
+                                                <li><a href="blog.html">News</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="elements.html">Elements</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
+                                                <li><a href="blog.html">News</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="elements.html">Elements</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
+                                                <li><a href="blog.html">News</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="elements.html">Elements</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="index.html">Home</a></li>
+                                                <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="concert-tours.html">Concert &amp; Tours</a></li>
+                                                <li><a href="blog.html">News</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="elements.html">Elements</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+-->
+                                    <li><a href="contact.html">Contact</a></li>
+									<li><a href="login.html">Logout</a></li>
+
+                                </ul>
+
+                                <!-- Social Button -->
+                                <div class="top-social-info">
+                                    <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                </div>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay2" style="background-image: url(img/bg-img/breadcumb.jpg);">
+        <div class="bradcumbContent">
+            <h2>Musician</h2>
+        </div>
+    </div>
+	<br><br><br>
+<center>
+<div class="col-md-6">
+<a href="MusicianTnC.html"><p><h3>Please see Terms and Condition before uploading music</h3></p></a>
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1default" data-toggle="tab"><h2>Upload your Music</h2></a></li>
+                            <li><a href="#tab2default" data-toggle="tab"><h2>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp All Album</h2></a></li>
+                            </li>
+                        </ul>
+                </div>
+				  <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1default">
+							<div>
+								<input 	type="file"  
+										id="customFile" 
+										name="uploadingFiles" 
+										onchange="AlertFilesize();" 
+										accept="audio/*" multiple required>
+								<p id="fileSize"></p>
+                                <div id="fileNames"></div>
+					        </div>
+						<input type="submit" value="Upload" id="UploadSongs">
+<p id="UploadAcknoledegement" >Your music has been uploaded</p><br><br>
+<progress id="FileUploadProgress" value="0" max="100">0%</progress>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+function getFilePath(){
+     $('input[type=file]').change(function () {
+         var filePath=$('#fileUpload').val(); 
+     });
+}
+$(document).ready(function(){
+ document.getElementById("AlbumUploads").innerHTML=localStorage.getItem("text3");
+$("#UploadAcknoledegement").hide();
+$("#UploadSongs").click(function(){
+$("#UploadAcknoledegement").show();
+});
+});
+ function AlertFilesize()
+            {
+                if(window.ActiveXObject){
+                    var fso = new ActiveXObject("Scripting.FileSystemObject");
+                    var filepath = document.getElementById('fileInput').value;
+					console.log("Hello "+filepath);
+                    var thefile = fso.getFile(filepath);
+                    var sizeinbytes = thefile.size;
+                    var filename=thefile.name;
+                }
+                else
+                {
+				
+                var fil = document.getElementById('customFile');
+                var filename,allname="";
+                if(fil.files.length>5){
+				alert("You have uploaded more number of files");
+				document.getElementById("customFile").value="";
+				}else{
+				console.log(fil.files.length);
+				var mainText="<table id=\"AudioData\">";
+                	for (var i = 0; i <= fil.files.length - 1; i++)
+                	{
+					var objectURL=URL.createObjectURL(fil.files[i]);
+						filename=fil.files[i].name;
+						mainText+="<tr>";
+						mainText+="<td>";
+						mainText+=filename;
+						mainText+="</td>";
+						mainText+="<td>";
+						mainText+="<audio controls >";
+						mainText+="		<source src=\"http://localhost:3000/audio/"+fil.files[i].name+"\" type=\"" +fil.files[i].type+"\">";
+						mainText+="</audio>";
+						mainText+="</td>";
+						mainText+="</tr>";
+					}
+					mainText+="</table>";
+					console.log(mainText);
+                }
+                
+                document.getElementById('fileNames').innerHTML=mainText;
+				document.getElementById('AlbumUploads').innerHTML=mainText;
+				if(localStorage.getItem("text3")==""){
+				localStorage.setItem("text3",mainText);
+				}else{
+				var prevText=localStorage.getItem("text3");
+				var newText=prevText+mainText;
+				localStorage.setItem("text3",newText);
+				}
+				
+				//document.cookie="text="+"Hello";      
+				var text=localStorage.getItem("text3");
+				console.log("TEXT: "+text);
+                document.getElementById("AlbumUploads").innerHTML=text;
+				}
+            }
+</script>
+						
+						</div>
+                        <div class="tab-pane fade" id="tab2default">
+						
+						<div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+        <!--    <div class="input-group">
+              <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+              <div class="input-group-append">
+                <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>-->
+<!-- Write your code here -->	
+
+	</div>
+	
+
+	<div id="AlbumUploads">
+Hello
+</div>
+		  
+		  		  <div>
+		  	<a href="packages.html"><h2>Do you want to Upload Again?</h2></a>
+		  </div>
+						</div>
+                    </div>
+                </div>
+				</div>
+				</div>
+</center>
+		<!-- Core Logic starts
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	Core Login ends
+	-->
+	
+  <footer class="footer-area section-padding-100-0">
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-md-6 col-xl-3">
+                    <div class="footer-widget-area mb-100">
+                        <a href="index.html"><img src="img/core-img/logo2.png" alt=""></a>
+                        <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This project is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Team Distrobouy</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+</p>
+                    </div>
+                </div>
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-sm-4 col-xl-2">
+                    <div class="footer-widget-area mb-100">
+                        <div class="widget-title">
+                            <h4>About</h4>
+                        </div>
+                        <nav>
+                            <ul class="footer-nav">
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Our Services</a></li>
+                                <li><a href="#">The team</a></li>
+                                <li><a href="#">Careers</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-sm-4 col-xl-2">
+                    <div class="footer-widget-area mb-100">
+                        <div class="widget-title">
+                            <h4>Links</h4>
+                        </div>
+                        <nav>
+                            <ul class="footer-nav">
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Our Services</a></li>
+                                <li><a href="#">The team</a></li>
+                                <li><a href="#">Careers</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-sm-4 col-xl-2">
+                    <div class="footer-widget-area mb-100">
+                        <div class="widget-title">
+                            <h4>Social</h4>
+                        </div>
+                        <nav>
+                            <ul class="footer-nav">
+                                <li><a href="#">Facebook</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">Snapchat</a></li>
+                                <li><a href="https://www.instagram.com/distrobouy/">Instagram</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Footer Widget Area -->
+                <div class="col-12 col-md-6 col-xl-3">
+                    <div class="footer-widget-area mb-100">
+                        <div class="widget-title">
+                            <h4>Subscribe</h4>
+                        </div>
+                        <form action="#" method="post" class="subscribe-form">
+                            <input type="email" name="subscribe-email" id="subscribeemail">
+                            <button type="submit">subscribe</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+    <script src="/__/firebase/7.7.0/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="/__/firebase/7.7.0/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="/__/firebase/7.7.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.7.0/firebase-firestore.js"></script>
+    <!-- Previously loaded Firebase SDKs -->
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+<script src="app.js"></script>
+<script src="uploadMusicModified.js"></script>
+</body>
+</html>
